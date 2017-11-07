@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
     val prestasi: Spinner by bindView(R.id.in_prestasi)
     val tanggalLahir: EditText by bindView(R.id.in_tanggal_lahir)
     val alamat: EditText by bindView(R.id.in_alamat)
+    val kodePos: EditText by bindView(R.id.in_kodepos)
     var disposable: Disposable? = null
 
     val indonesia by lazy {
@@ -150,36 +151,36 @@ class MainActivity : AppCompatActivity() {
     private fun getProvince() {
         provinceLoad(true)
         disposable = indonesia.province()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { result ->
-                    // Toast.makeText(this, "${result.message}", Toast.LENGTH_SHORT).show()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result ->
+                            // Toast.makeText(this, "${result.message}", Toast.LENGTH_SHORT).show()
 
-                    provinces.clear()
-                    provincesId.clear()
+                            provinces.clear()
+                            provincesId.clear()
 
-                    provinces.add("Pilih Provinsi")
-                    provincesId.add(0)
+                            provinces.add("Pilih Provinsi")
+                            provincesId.add(0)
 
-                    result.data.forEach {
-                        provinces.add(it.name)
-                        provincesId.add(it.id)
-                    }
+                            result.data.forEach {
+                                provinces.add(it.name)
+                                provincesId.add(it.id)
+                            }
 
-                    val adapterProvinsi = ArrayAdapter(this,
-                            R.layout.spinner_single_simple, provinces)
-                    adapterProvinsi.setDropDownViewResource(R.layout.spinner_dropdown_simple)
-                    provinsi.adapter = adapterProvinsi
+                            val adapterProvinsi = ArrayAdapter(this,
+                                    R.layout.spinner_single_simple, provinces)
+                            adapterProvinsi.setDropDownViewResource(R.layout.spinner_dropdown_simple)
+                            provinsi.adapter = adapterProvinsi
 
-                    provinceLoad(false)
+                            provinceLoad(false)
 
-                },
-                { error ->
-                    Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
-                    provinceLoad(false)
-                }
-            )
+                        },
+                        { error ->
+                            Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
+                            provinceLoad(false)
+                        }
+                )
 
         provinsi.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
@@ -204,41 +205,42 @@ class MainActivity : AppCompatActivity() {
         district.isEnabled = false
         village.isEnabled = false
         alamat.isEnabled = false
+        kodePos.isEnabled = false
     }
 
     private fun getCity(id: Int) {
         cityLoad(true)
         disposable = indonesia.city(id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { result ->
-                    // Toast.makeText(this, "${result.message}", Toast.LENGTH_SHORT).show()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result ->
+                            // Toast.makeText(this, "${result.message}", Toast.LENGTH_SHORT).show()
 
-                    cities.clear()
-                    citiesId.clear()
+                            cities.clear()
+                            citiesId.clear()
 
-                    cities.add("Pilih Kota/Kab")
-                    citiesId.add(0)
+                            cities.add("Pilih Kota/Kab")
+                            citiesId.add(0)
 
-                    result.data.cities.forEach {
-                        cities.add(it.name)
-                        citiesId.add(it.id)
-                    }
+                            result.data.cities.forEach {
+                                cities.add(it.name)
+                                citiesId.add(it.id)
+                            }
 
-                    val adapterCity = ArrayAdapter(this,
-                            R.layout.spinner_single_simple, cities)
-                    adapterCity.setDropDownViewResource(R.layout.spinner_dropdown_simple)
-                    city.adapter = adapterCity
+                            val adapterCity = ArrayAdapter(this,
+                                    R.layout.spinner_single_simple, cities)
+                            adapterCity.setDropDownViewResource(R.layout.spinner_dropdown_simple)
+                            city.adapter = adapterCity
 
-                    cityLoad(false)
+                            cityLoad(false)
 
-                },
-                { error ->
-                    Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
-                    cityLoad(false)
-                }
-            )
+                        },
+                        { error ->
+                            Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
+                            cityLoad(false)
+                        }
+                )
 
         city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
@@ -261,6 +263,7 @@ class MainActivity : AppCompatActivity() {
         district.isEnabled = false
         village.isEnabled = false
         alamat.isEnabled = false
+        kodePos.isEnabled = false
     }
 
     private fun getDistrict(id: Int) {
@@ -320,6 +323,7 @@ class MainActivity : AppCompatActivity() {
         district.isEnabled = !status
         village.isEnabled = false
         alamat.isEnabled = false
+        kodePos.isEnabled = false
     }
 
     private fun getVillage(id: Long) {
@@ -355,6 +359,20 @@ class MainActivity : AppCompatActivity() {
                             villageLoad(false)
                         }
                 )
+
+        village.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (villagesId.count() > 0 && position > 0) {
+                    alamat.isEnabled = true
+                    kodePos.isEnabled = true
+                }
+            }
+        }
     }
 
     private fun villageLoad(status: Boolean) {
@@ -363,7 +381,8 @@ class MainActivity : AppCompatActivity() {
         city.isEnabled = !status
         district.isEnabled = !status
         village.isEnabled = !status
-        alamat.isEnabled = !status
+        alamat.isEnabled = false
+        kodePos.isEnabled = false
     }
 
     override fun onPause() {

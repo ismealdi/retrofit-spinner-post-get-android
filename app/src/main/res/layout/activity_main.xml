@@ -922,6 +922,7 @@
 
 
                 <EditText
+                    android:id="@+id/in_kodepos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_primary"
