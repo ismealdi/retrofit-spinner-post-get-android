@@ -693,6 +693,14 @@
                     android:textColor="@color/colorBlackSecondary"
                     android:textSize="@dimen/text_small" />
 
+                <ProgressBar
+                    android:id="@+id/progress_alamat"
+                    android:layout_width="@dimen/progressBarMedium"
+                    android:layout_height="@dimen/progressBarMedium"
+                    android:layout_marginTop="-35dp"
+                    android:layout_gravity="right"
+                    android:progressTint="@color/colorPrimary"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -727,21 +735,17 @@
                 </LinearLayout>
 
 
-                <EditText
+                <Spinner
+                    android:id="@+id/in_provinsi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/inputBottomMedium"
                     android:background="@drawable/edittext_primary"
                     android:descendantFocusability="beforeDescendants"
                     android:focusable="true"
                     android:focusableInTouchMode ="true"
                     android:imeOptions="actionNext"
-                    android:inputType="textPersonName"
-                    android:maxLines="1"
-                    android:paddingBottom="@dimen/edittext_horizontal"
-                    android:paddingTop="@dimen/edittext_horizontal_small"
-                    android:text="Jawa Barat"
-                    android:textSize="@dimen/text_medium" />
+                    android:textSize="@dimen/text_medium"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"/>
 
                 <!-- - -->
 
@@ -767,21 +771,17 @@
                 </LinearLayout>
 
 
-                <EditText
+                <Spinner
+                    android:id="@+id/in_kota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/inputBottomMedium"
                     android:background="@drawable/edittext_primary"
                     android:descendantFocusability="beforeDescendants"
                     android:focusable="true"
                     android:focusableInTouchMode ="true"
                     android:imeOptions="actionNext"
-                    android:inputType="textPersonName"
-                    android:maxLines="1"
-                    android:paddingBottom="@dimen/edittext_horizontal"
-                    android:paddingTop="@dimen/edittext_horizontal_small"
-                    android:text="Kota Bogor"
-                    android:textSize="@dimen/text_medium" />
+                    android:textSize="@dimen/text_medium"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"/>
 
                 <!-- - -->
 
@@ -807,21 +807,17 @@
                 </LinearLayout>
 
 
-                <EditText
+                <Spinner
+                    android:id="@+id/in_kecamatan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/inputBottomMedium"
                     android:background="@drawable/edittext_primary"
                     android:descendantFocusability="beforeDescendants"
                     android:focusable="true"
                     android:focusableInTouchMode ="true"
                     android:imeOptions="actionNext"
-                    android:inputType="textPersonName"
-                    android:maxLines="1"
-                    android:paddingBottom="@dimen/edittext_horizontal"
-                    android:paddingTop="@dimen/edittext_horizontal_small"
-                    android:text="Bogor Barat"
-                    android:textSize="@dimen/text_medium" />
+                    android:textSize="@dimen/text_medium"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"/>
 
                 <!-- - -->
 
@@ -847,21 +843,17 @@
                 </LinearLayout>
 
 
-                <EditText
+                <Spinner
+                    android:id="@+id/in_desa"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/inputBottomMedium"
                     android:background="@drawable/edittext_primary"
                     android:descendantFocusability="beforeDescendants"
                     android:focusable="true"
                     android:focusableInTouchMode ="true"
                     android:imeOptions="actionNext"
-                    android:inputType="textPersonName"
-                    android:maxLines="1"
-                    android:paddingBottom="@dimen/edittext_horizontal"
-                    android:paddingTop="@dimen/edittext_horizontal_small"
-                    android:text="Menteng"
-                    android:textSize="@dimen/text_medium" />
+                    android:textSize="@dimen/text_medium"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"/>
 
                 <!-- - -->
 
@@ -888,6 +880,7 @@
 
 
                 <EditText
+                    android:id="@+id/in_alamat"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edittext_address"
                     android:gravity="top|start"

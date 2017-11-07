@@ -17,5 +17,6 @@
     <dimen name="text_size_toolbar_title">18sp</dimen>
     <dimen name="text_big_second">8pt</dimen>
     <dimen name="edittext_address">80dp</dimen>
+    <dimen name="progressBarMedium">22.5dp</dimen>
 
 </resources>

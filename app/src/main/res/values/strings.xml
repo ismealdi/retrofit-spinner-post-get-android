@@ -54,4 +54,16 @@
         <item>Ada</item>
         <item>Tidak Ada</item>
     </string-array>
+    <string-array name="provinsi">
+        <item>Pilih Provinsi</item>
+    </string-array>
+    <string-array name="kota">
+        <item>Pilih Kota/Kab</item>
+    </string-array>
+    <string-array name="kecamatan">
+        <item>Pilih Kecamatan</item>
+    </string-array>
+    <string-array name="desa">
+        <item>Pilih Kelurahan/Desa</item>
+    </string-array>
 </resources>

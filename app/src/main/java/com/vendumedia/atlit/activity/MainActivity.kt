@@ -5,30 +5,48 @@ import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 
 import com.vendumedia.atlit.R
 import kotterknife.bindView
 import android.graphics.Rect
+import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import com.vendumedia.atlit.api.Indonesia
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.text.SimpleDateFormat
 import java.util.*
+import android.widget.Spinner
+
+
 
 class MainActivity : AppCompatActivity() {
 
+    val provinsi: Spinner by bindView(R.id.in_provinsi)
+    var provinces: MutableList<String> = mutableListOf<String>()
+    var provincesId: MutableList<Int> = mutableListOf<Int>()
+
+    val city: Spinner by bindView(R.id.in_kota)
+    var cities: MutableList<String> = mutableListOf<String>()
+    var citiesId: MutableList<Int> = mutableListOf<Int>()
+
+    val district: Spinner by bindView(R.id.in_kecamatan)
+    var districts: MutableList<String> = mutableListOf<String>()
+    var districtsId: MutableList<Int> = mutableListOf<Int>()
+
+    val village: Spinner by bindView(R.id.in_desa)
+    var villages: MutableList<String> = mutableListOf<String>()
+    var villagesId: MutableList<Int> = mutableListOf<Int>()
+
+    val progressAlamat: ProgressBar by bindView(R.id.progress_alamat)
     val golonganDarah: Spinner by bindView(R.id.in_golongan_darah)
     val aktaKelahiran: Spinner by bindView(R.id.in_akta_kelahiran)
     val sttb: Spinner by bindView(R.id.in_sttb)
     val prestasi: Spinner by bindView(R.id.in_prestasi)
     val tanggalLahir: EditText by bindView(R.id.in_tanggal_lahir)
-
+    val alamat: EditText by bindView(R.id.in_alamat)
     var disposable: Disposable? = null
 
     val indonesia by lazy {
@@ -38,6 +56,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        getProvince()
         setSpinnerItem()
 
         tanggalLahir.setOnClickListener {
@@ -53,14 +72,12 @@ class MainActivity : AppCompatActivity() {
 
                 tanggalLahir.setText(dateOfBirth.format(dateOfBirthRaw))
 
-
             }, year, month, day)
 
             datePickerDialog.show()
 
         }
 
-        getProvince()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -100,6 +117,29 @@ class MainActivity : AppCompatActivity() {
                 R.layout.spinner_single_simple, resources.getStringArray(R.array.ya_no))
         adapterPrestasi.setDropDownViewResource(R.layout.spinner_dropdown_simple)
         prestasi.adapter = adapterPrestasi
+
+        val adapterProvinsi = ArrayAdapter(this,
+                R.layout.spinner_single_simple, resources.getStringArray(R.array.provinsi))
+        adapterProvinsi.setDropDownViewResource(R.layout.spinner_dropdown_simple)
+        provinsi.adapter = adapterProvinsi
+
+        val adapterKota = ArrayAdapter(this,
+                R.layout.spinner_single_simple, resources.getStringArray(R.array.kota))
+        adapterKota.setDropDownViewResource(R.layout.spinner_dropdown_simple)
+        city.adapter = adapterKota
+
+        val adapterKecamatan = ArrayAdapter(this,
+                R.layout.spinner_single_simple, resources.getStringArray(R.array.kecamatan))
+        adapterKecamatan.setDropDownViewResource(R.layout.spinner_dropdown_simple)
+        district.adapter = adapterKecamatan
+
+        val adapterDesa = ArrayAdapter(this,
+                R.layout.spinner_single_simple, resources.getStringArray(R.array.desa))
+        adapterDesa.setDropDownViewResource(R.layout.spinner_dropdown_simple)
+        village.adapter = adapterDesa
+
+
+
     }
 
     override fun onResume() {
@@ -108,20 +148,207 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getProvince() {
+        provinceLoad(true)
         disposable = indonesia.province()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { result ->
-                    Toast.makeText(this, "${result.message}", Toast.LENGTH_SHORT).show()
+                    // Toast.makeText(this, "${result.message}", Toast.LENGTH_SHORT).show()
+
+                    provinces.clear()
+                    provincesId.clear()
+
+                    provinces.add("Pilih Provinsi")
+                    provincesId.add(0)
 
                     result.data.forEach {
-                        println(it.name)
+                        provinces.add(it.name)
+                        provincesId.add(it.id)
                     }
-                    
+
+                    val adapterProvinsi = ArrayAdapter(this,
+                            R.layout.spinner_single_simple, provinces)
+                    adapterProvinsi.setDropDownViewResource(R.layout.spinner_dropdown_simple)
+                    provinsi.adapter = adapterProvinsi
+
+                    provinceLoad(false)
+
                 },
-                { error -> Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show() }
+                { error ->
+                    Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
+                    provinceLoad(false)
+                }
             )
+
+        provinsi.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (provincesId.count() > 0 && position > 0) {
+                    getCity(provincesId[position])
+                }
+            }
+        }
+
+
+    }
+
+    private fun provinceLoad(status: Boolean) {
+        progressAlamat.visibility = if (status) View.VISIBLE else View.GONE
+        provinsi.isEnabled = !status
+        city.isEnabled = false
+        district.isEnabled = false
+        village.isEnabled = false
+        alamat.isEnabled = false
+    }
+
+    private fun getCity(id: Int) {
+        cityLoad(true)
+        disposable = indonesia.city(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { result ->
+                    // Toast.makeText(this, "${result.message}", Toast.LENGTH_SHORT).show()
+
+                    cities.clear()
+                    citiesId.clear()
+
+                    cities.add("Pilih Kota/Kab")
+                    citiesId.add(0)
+
+                    result.data.cities.forEach {
+                        cities.add(it.name)
+                        citiesId.add(it.id)
+                    }
+
+                    val adapterCity = ArrayAdapter(this,
+                            R.layout.spinner_single_simple, cities)
+                    adapterCity.setDropDownViewResource(R.layout.spinner_dropdown_simple)
+                    city.adapter = adapterCity
+
+                    cityLoad(false)
+
+                },
+                { error ->
+                    Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
+                    cityLoad(false)
+                }
+            )
+
+        city.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (citiesId.count() > 0 && position > 0) {
+                    getDistrict(citiesId[position])
+                }
+            }
+        }
+    }
+
+    private fun cityLoad(status: Boolean) {
+        progressAlamat.visibility = if (status) View.VISIBLE else View.GONE
+        provinsi.isEnabled = !status
+        city.isEnabled = !status
+        district.isEnabled = false
+        village.isEnabled = false
+        alamat.isEnabled = false
+    }
+
+    private fun getDistrict(id: Int) {
+        districtLoad(true)
+        disposable = indonesia.district(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result ->
+                            // Toast.makeText(this, "${result.message}", Toast.LENGTH_SHORT).show()
+
+                            districts.clear()
+                            districtsId.clear()
+
+                            districts.add("Pilih Kecamatan")
+                            districtsId.add(0)
+
+                            result.data.districts.forEach {
+                                districts.add(it.name)
+                                districtsId.add(it.id)
+                            }
+
+                            val adapterDistrict = ArrayAdapter(this,
+                                    R.layout.spinner_single_simple, districts)
+                            adapterDistrict.setDropDownViewResource(R.layout.spinner_dropdown_simple)
+                            district.adapter = adapterDistrict
+
+                            districtLoad(false)
+
+                        },
+                        { error ->
+                            Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
+                            districtLoad(false)
+                        }
+                )
+    }
+
+    private fun districtLoad(status: Boolean) {
+        progressAlamat.visibility = if (status) View.VISIBLE else View.GONE
+        provinsi.isEnabled = !status
+        city.isEnabled = !status
+        district.isEnabled = !status
+        village.isEnabled = false
+        alamat.isEnabled = false
+    }
+
+    private fun getVillage(id: Int) {
+        villageLoad(true)
+        disposable = indonesia.village(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result ->
+                            // Toast.makeText(this, "${result.message}", Toast.LENGTH_SHORT).show()
+
+                            villages.clear()
+                            villagesId.clear()
+
+                            villages.add("Pilih Kelurahan/Desa")
+                            villagesId.add(0)
+
+                            result.data.villages.forEach {
+                                villages.add(it.name)
+                                villagesId.add(it.id)
+                            }
+
+                            val adapterVillage = ArrayAdapter(this,
+                                    R.layout.spinner_single_simple, villages)
+                            adapterVillage.setDropDownViewResource(R.layout.spinner_dropdown_simple)
+                            village.adapter = adapterVillage
+
+                            villageLoad(false)
+
+                        },
+                        { error ->
+                            Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
+                            villageLoad(false)
+                        }
+                )
+    }
+
+    private fun villageLoad(status: Boolean) {
+        progressAlamat.visibility = if (status) View.VISIBLE else View.GONE
+        provinsi.isEnabled = !status
+        city.isEnabled = !status
+        district.isEnabled = !status
+        village.isEnabled = !status
+        alamat.isEnabled = !status
     }
 
     override fun onPause() {
