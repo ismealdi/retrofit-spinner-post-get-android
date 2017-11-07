@@ -32,7 +32,7 @@ interface Indonesia {
 
     @GET("indonesia/villages/{id}")
     @Headers("Content-Type: application/json")
-    fun village(@Path("id") id: Int): Observable<Village.Response>
+    fun village(@Path("id") id: Long): Observable<Village.Response>
 
     companion object {
         fun create(): Indonesia {

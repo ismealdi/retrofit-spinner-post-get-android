@@ -20,7 +20,7 @@ object District {
 	)
 
 	data class District(
-            @SerializedName("id") val id: Int = 0,
+            @SerializedName("id") val id: Long = 0,
             @SerializedName("city_id") val cityId: String = "",
             @SerializedName("name") val name: String = ""
 	)

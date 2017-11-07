@@ -20,7 +20,7 @@ object Village {
 	)
 
 	data class Village(
-            @SerializedName("id") val id: Int = 0,
+            @SerializedName("id") val id: Long = 0,
             @SerializedName("district_id") val districtId: String = "",
             @SerializedName("name") val name: String = ""
 	)

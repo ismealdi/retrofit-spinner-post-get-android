@@ -34,11 +34,11 @@ class MainActivity : AppCompatActivity() {
 
     val district: Spinner by bindView(R.id.in_kecamatan)
     var districts: MutableList<String> = mutableListOf<String>()
-    var districtsId: MutableList<Int> = mutableListOf<Int>()
+    var districtsId: MutableList<Long> = mutableListOf<Long>()
 
     val village: Spinner by bindView(R.id.in_desa)
     var villages: MutableList<String> = mutableListOf<String>()
-    var villagesId: MutableList<Int> = mutableListOf<Int>()
+    var villagesId: MutableList<Long> = mutableListOf<Long>()
 
     val progressAlamat: ProgressBar by bindView(R.id.progress_alamat)
     val golonganDarah: Spinner by bindView(R.id.in_golongan_darah)
@@ -322,7 +322,7 @@ class MainActivity : AppCompatActivity() {
         alamat.isEnabled = false
     }
 
-    private fun getVillage(id: Int) {
+    private fun getVillage(id: Long) {
         villageLoad(true)
         disposable = indonesia.village(id)
                 .subscribeOn(Schedulers.io())
