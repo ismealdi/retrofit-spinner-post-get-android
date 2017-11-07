@@ -303,7 +303,7 @@ class MainActivity : AppCompatActivity() {
         provinsi.isEnabled = !status
         city.isEnabled = !status
         district.isEnabled = !status
-        village.isEnabled = false
+        village.isEnabled = !status
         alamat.isEnabled = false
     }
 
