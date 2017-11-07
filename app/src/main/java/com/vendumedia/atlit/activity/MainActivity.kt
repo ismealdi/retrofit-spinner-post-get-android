@@ -13,8 +13,12 @@ import kotterknife.bindView
 import android.graphics.Rect
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.Toast
+import com.vendumedia.atlit.api.Indonesia
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +28,12 @@ class MainActivity : AppCompatActivity() {
     val sttb: Spinner by bindView(R.id.in_sttb)
     val prestasi: Spinner by bindView(R.id.in_prestasi)
     val tanggalLahir: EditText by bindView(R.id.in_tanggal_lahir)
+
+    var disposable: Disposable? = null
+
+    val indonesia by lazy {
+        Indonesia.create()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +59,8 @@ class MainActivity : AppCompatActivity() {
             datePickerDialog.show()
 
         }
+
+        getProvince()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -70,24 +82,51 @@ class MainActivity : AppCompatActivity() {
 
     private fun setSpinnerItem() {
         val adapterGolonganDarah = ArrayAdapter(this,
-            R.layout.spinner_single_simple, resources.getStringArray(R.array.golongan_darah))
-            adapterGolonganDarah.setDropDownViewResource(R.layout.spinner_dropdown_simple)
-            golonganDarah.adapter = adapterGolonganDarah
+                R.layout.spinner_single_simple, resources.getStringArray(R.array.golongan_darah))
+        adapterGolonganDarah.setDropDownViewResource(R.layout.spinner_dropdown_simple)
+        golonganDarah.adapter = adapterGolonganDarah
 
         val adapterAktaKelahiran = ArrayAdapter(this,
-            R.layout.spinner_single_simple, resources.getStringArray(R.array.ya_no))
-            adapterAktaKelahiran.setDropDownViewResource(R.layout.spinner_dropdown_simple)
-            aktaKelahiran.adapter = adapterAktaKelahiran
+                R.layout.spinner_single_simple, resources.getStringArray(R.array.ya_no))
+        adapterAktaKelahiran.setDropDownViewResource(R.layout.spinner_dropdown_simple)
+        aktaKelahiran.adapter = adapterAktaKelahiran
 
         val adapterSttb = ArrayAdapter(this,
-            R.layout.spinner_single_simple, resources.getStringArray(R.array.ya_no))
-            adapterSttb.setDropDownViewResource(R.layout.spinner_dropdown_simple)
-            sttb.adapter = adapterSttb
+                R.layout.spinner_single_simple, resources.getStringArray(R.array.ya_no))
+        adapterSttb.setDropDownViewResource(R.layout.spinner_dropdown_simple)
+        sttb.adapter = adapterSttb
 
         val adapterPrestasi = ArrayAdapter(this,
-            R.layout.spinner_single_simple, resources.getStringArray(R.array.ya_no))
-            adapterPrestasi.setDropDownViewResource(R.layout.spinner_dropdown_simple)
-            prestasi.adapter = adapterPrestasi
+                R.layout.spinner_single_simple, resources.getStringArray(R.array.ya_no))
+        adapterPrestasi.setDropDownViewResource(R.layout.spinner_dropdown_simple)
+        prestasi.adapter = adapterPrestasi
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+    }
+
+    private fun getProvince() {
+        disposable = indonesia.province()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { result ->
+                    Toast.makeText(this, "${result.message}", Toast.LENGTH_SHORT).show()
+
+                    result.data.forEach {
+                        println(it.name)
+                    }
+                    
+                },
+                { error -> Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show() }
+            )
+    }
+
+    override fun onPause() {
+        super.onPause()
+        disposable?.dispose()
     }
 
 }

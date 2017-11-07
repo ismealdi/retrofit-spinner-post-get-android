@@ -16,7 +16,7 @@ class App : Application() {
 
     companion object {
 
-        var API = "http://sushitei.craniumstaging.xyz/api/v1/"
+        var API = "http://192.168.43.29/atlit/public/api/v1/"
         var URL = "http://sushitei.craniumstaging.xyz/"
     }
 
