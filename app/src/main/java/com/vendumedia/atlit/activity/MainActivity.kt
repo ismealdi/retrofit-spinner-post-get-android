@@ -296,6 +296,21 @@ class MainActivity : AppCompatActivity() {
                             districtLoad(false)
                         }
                 )
+
+
+
+        district.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (districtsId.count() > 0 && position > 0) {
+                    getVillage(districtsId[position])
+                }
+            }
+        }
     }
 
     private fun districtLoad(status: Boolean) {
@@ -303,7 +318,7 @@ class MainActivity : AppCompatActivity() {
         provinsi.isEnabled = !status
         city.isEnabled = !status
         district.isEnabled = !status
-        village.isEnabled = !status
+        village.isEnabled = false
         alamat.isEnabled = false
     }
 
