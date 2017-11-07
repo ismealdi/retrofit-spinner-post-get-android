@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="buttonMedium">14sp</dimen>
+    <dimen name="buttonHeighMedium">45dp</dimen>
+
+    <dimen name="activityHorizontalMargin">16dp</dimen>
+    <dimen name="activityVerticalMargin">16dp</dimen>
+    <dimen name="activityVerticalMarginFirst">32dp</dimen>
+    <dimen name="text_big">10pt</dimen>
+    <dimen name="text_small">5.9pt</dimen>
+    <dimen name="text_extra_small">3.9pt</dimen>
+    <dimen name="text_medium">6.9pt</dimen>
+    <dimen name="inputBottomMedium">18dp</dimen>
+    <dimen name="inputBottomSmall">2dp</dimen>
+    <dimen name="edittext_horizontal">8dp</dimen>
+    <dimen name="edittext_horizontal_small">6dp</dimen>
+    <dimen name="text_size_toolbar_title">18sp</dimen>
+    <dimen name="text_big_second">8pt</dimen>
+    <dimen name="edittext_address">80dp</dimen>
+
+</resources>

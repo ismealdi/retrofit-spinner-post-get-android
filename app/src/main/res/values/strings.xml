@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">Atlit</string>
+    <string name="done">Done</string>
+    <string name="input_nama">Nama Lengkap</string>
+    <string name="input_tempat_tanggal_lahir">Tempat Lahir</string>
+    <string name="input_asal_sekolah">Asal Sekolah</string>
+    <string name="input_tinggi_badan">Tinggi Badan</string>
+    <string name="input_berat_badan">Berat Badan</string>
+    <string name="input_golongan_darah">Golongan Darah</string>
+    <string name="input_dokumen_data_yang_dimiliki">Dokumen Data Yang Dimiliki</string>
+    <string name="label_title">Formulir Pendaftaran</string>
+    <string name="label_description">Data Seleksi Pusat Pendidikan dan Latihan Pelajar Daerah Kabupaten Bogor</string>
+    <string name="required">*</string>
+    <string name="input_jenis_kelamin">Jenis Kelamin</string>
+    <string name="laki_laki">Laki - Laki</string>
+    <string name="perempuan">Perempuan</string>
+    <string name="label_PPLPD">PPLPD</string>
+    <string name="label_dokumen_data">Dokumen Data Yang Dimiliki</string>
+    <string name="label_description_dokumen_data">Jangan Lupa Untuk Melampirkan Data Foto Copy Setiap Dokumen</string>
+    <string name="input_akta_kelahiran">Akta Kelahiran</string>
+    <string name="input_sttb">STTB / Ijasah Terakhir</string>
+    <string name="input_prestasi">Prestasi Keolahragaan</string>
+    <string name="label_alamat">Alamat</string>
+    <string name="label_alamat_description">Lengkapi Data Alamat Anda</string>
+    <string name="input_tempat_tinggal">Tempat Tinggal</string>
+    <string name="input_kelurahan">Kelurahan / Desa</string>
+    <string name="input_kecamatan">Kecamatan</string>
+    <string name="input_kabupaten_kota">Kabupaten / Kota</string>
+    <string name="input_provinsi">Provinsi</string>
+    <string name="input_kode_pos">Kode Pos</string>
+    <string name="label_orang_tua">Informasi Orang Tua Wali</string>
+    <string name="label_orang_tua_description">Data Orang Tua Wali Pendaftar Mohon di Isi Dengan Lengkap</string>
+    <string name="input_tanggal_lahir">Tanggal Lahir</string>
+    <string name="input_nama_wali">Nama Bapak/Ibu</string>
+    <string name="input_anak_ke">Anak Ke</string>
+    <string name="input_jumlah_saudara">Dari</string>
+    <string name="input_jumlah_saudara_note">Bersaudara</string>
+    <string name="input_cabang_olahraga">Cabang Olahraga</string>
+    <string name="input_klub">Nama Perkumpulan / Klub</string>
+    <string name="input_alamat_klub">Alamat Klub</string>
+    <string name="label_perkumpulan">Data Perkumpulan / Klub</string>
+    <string name="label_perkumpulan_description">Lengkapi Data Perkumpulan / Klub Anda</string>
+    <string name="input_phone">Nomor Telp / Handphone</string>
+    <string name="input_hobby">Hobby / Kegiatan Lain</string>
+    <string name="input_catatan">Catatan Prestasi Terbaik</string>
+    <string name="input_catatan_description">3 Terbaik</string>
+    <string-array name="golongan_darah">
+        <item>O</item>
+        <item>A</item>
+        <item>B</item>
+        <item>AB</item>
+    </string-array>
+    <string-array name="ya_no">
+        <item>Ada</item>
+        <item>Tidak Ada</item>
+    </string-array>
+</resources>

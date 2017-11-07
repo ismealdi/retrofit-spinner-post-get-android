@@ -1,0 +1,10 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    style="?attr/spinnerDropDownItemStyle"
+    android:singleLine="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ellipsize="marquee"
+    android:paddingBottom="@dimen/edittext_horizontal"
+    android:paddingTop="@dimen/edittext_horizontal_small"
+    android:textSize="@dimen/text_medium"/>

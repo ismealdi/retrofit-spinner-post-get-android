@@ -1,0 +1,1348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context="com.vendumedia.atlit.activity.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.NoActionBar"
+        android:id="@+id/appbar"
+        app:elevation="@null">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            app:contentInsetStart="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <TextView
+                android:id="@+id/title_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="start"
+                android:text="@string/label_PPLPD"
+                android:paddingLeft="@dimen/activityHorizontalMargin"
+                android:paddingRight="@dimen/activityHorizontalMargin"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_size_toolbar_title" />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_below="@id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBackgroundPrimary"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activityVerticalMarginFirst"
+                android:paddingLeft="@dimen/activityHorizontalMargin"
+                android:paddingRight="@dimen/activityHorizontalMargin"
+                android:paddingTop="@dimen/activityVerticalMarginFirst">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/label_title"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_big" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_description"
+                    android:textColor="@color/colorBlackSecondary"
+                    android:textSize="@dimen/text_small" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activityVerticalMarginFirst"
+                android:paddingLeft="@dimen/activityHorizontalMargin"
+                android:paddingRight="@dimen/activityHorizontalMargin"
+                android:paddingTop="@dimen/activityVerticalMarginFirst">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_nama"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+
+                        android:textSize="@dimen/text_extra_small" />
+                </LinearLayout>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/edittext_horizontal"
+                    android:paddingTop="@dimen/edittext_horizontal_small"
+                    android:text="Aldi Maulana"
+                    android:textSize="@dimen/text_medium" />
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_jenis_kelamin"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+                </LinearLayout>
+
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-12dp"
+                        android:scaleX=".8"
+                        android:scaleY=".8"
+                        android:text="@string/laki_laki"
+                        android:textSize="@dimen/text_medium" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleX=".8"
+                        android:scaleY=".8"
+                        android:text="@string/perempuan"
+                        android:textSize="@dimen/text_medium" />
+
+                </RadioGroup>
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.95"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/input_tempat_tanggal_lahir"
+                                android:textSize="@dimen/text_small" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="@dimen/text_extra_small" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/inputBottomMedium"
+                            android:background="@drawable/edittext_primary"
+                            android:descendantFocusability="beforeDescendants"
+                            android:focusable="true"
+                            android:focusableInTouchMode ="true"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:paddingBottom="@dimen/edittext_horizontal"
+                            android:paddingTop="@dimen/edittext_horizontal_small"
+                            android:text="Bogor"
+                            android:textSize="@dimen/text_medium" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.95"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/input_tanggal_lahir"
+                                android:textSize="@dimen/text_small" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="@dimen/text_extra_small" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/in_tanggal_lahir"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/inputBottomMedium"
+                            android:background="@drawable/edittext_primary"
+                            android:descendantFocusability="beforeDescendants"
+                            android:focusable="false"
+                            android:focusableInTouchMode ="false"
+                            android:imeOptions="actionNext"
+                            android:inputType="date"
+                            android:maxLines="1"
+                            android:paddingBottom="@dimen/edittext_horizontal"
+                            android:paddingTop="@dimen/edittext_horizontal_small"
+                            android:text="19 Mei 1991"
+                            android:textSize="@dimen/text_medium" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_asal_sekolah"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+
+                        android:textSize="@dimen/text_extra_small" />
+                </LinearLayout>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/edittext_horizontal"
+                    android:paddingTop="@dimen/edittext_horizontal_small"
+                    android:text="SMK Adi Sanggoro"
+                    android:textSize="@dimen/text_medium" />
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.95"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/input_tinggi_badan"
+                                android:textSize="@dimen/text_small" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:text="kg"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="@dimen/text_extra_small" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/inputBottomMedium"
+                            android:background="@drawable/edittext_primary"
+                            android:descendantFocusability="beforeDescendants"
+                            android:focusable="true"
+                            android:focusableInTouchMode ="true"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:paddingBottom="@dimen/edittext_horizontal"
+                            android:paddingTop="@dimen/edittext_horizontal_small"
+                            android:text="162"
+                            android:textSize="@dimen/text_medium" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.95"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/input_berat_badan"
+                                android:textSize="@dimen/text_small" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:text="cm"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="@dimen/text_extra_small" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/editText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/inputBottomMedium"
+                            android:background="@drawable/edittext_primary"
+                            android:descendantFocusability="beforeDescendants"
+                            android:focusable="true"
+                            android:focusableInTouchMode ="true"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:paddingBottom="@dimen/edittext_horizontal"
+                            android:paddingTop="@dimen/edittext_horizontal_small"
+                            android:text="57"
+                            android:textSize="@dimen/text_medium" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_golongan_darah"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/in_golongan_darah"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:textSize="@dimen/text_medium" />
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_phone"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+                </LinearLayout>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/edittext_horizontal"
+                    android:paddingTop="@dimen/edittext_horizontal_small"
+                    android:text="087770122245"
+                    android:textSize="@dimen/text_medium" />
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_hobby"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+                </LinearLayout>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/edittext_horizontal"
+                    android:paddingTop="@dimen/edittext_horizontal_small"
+                    android:text="Tidur"
+                    android:textSize="@dimen/text_medium" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBackgroundPrimary"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activityVerticalMarginFirst"
+                android:paddingLeft="@dimen/activityHorizontalMargin"
+                android:paddingRight="@dimen/activityHorizontalMargin"
+                android:paddingTop="@dimen/activityVerticalMarginFirst">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/label_dokumen_data"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_big_second" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_description_dokumen_data"
+                    android:textColor="@color/colorBlackSecondary"
+                    android:textSize="@dimen/text_small" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activityVerticalMargin"
+                android:paddingLeft="@dimen/activityHorizontalMargin"
+                android:paddingRight="@dimen/activityHorizontalMargin"
+                android:paddingTop="@dimen/activityVerticalMargin">
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_akta_kelahiran"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/in_akta_kelahiran"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:textSize="@dimen/text_medium"
+                    android:layout_marginBottom="@dimen/inputBottomMedium" />
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_sttb"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/in_sttb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:textSize="@dimen/text_medium"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"/>
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_prestasi"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/in_prestasi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:textSize="@dimen/text_medium"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"/>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBackgroundPrimary"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activityVerticalMarginFirst"
+                android:paddingLeft="@dimen/activityHorizontalMargin"
+                android:paddingRight="@dimen/activityHorizontalMargin"
+                android:paddingTop="@dimen/activityVerticalMarginFirst">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/label_alamat"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_big_second" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_alamat_description"
+                    android:textColor="@color/colorBlackSecondary"
+                    android:textSize="@dimen/text_small" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activityVerticalMargin"
+                android:paddingLeft="@dimen/activityHorizontalMargin"
+                android:paddingRight="@dimen/activityHorizontalMargin"
+                android:paddingTop="@dimen/activityVerticalMargin">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_provinsi"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+
+                </LinearLayout>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/edittext_horizontal"
+                    android:paddingTop="@dimen/edittext_horizontal_small"
+                    android:text="Jawa Barat"
+                    android:textSize="@dimen/text_medium" />
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_kabupaten_kota"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+
+                </LinearLayout>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/edittext_horizontal"
+                    android:paddingTop="@dimen/edittext_horizontal_small"
+                    android:text="Kota Bogor"
+                    android:textSize="@dimen/text_medium" />
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_kecamatan"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+
+                </LinearLayout>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/edittext_horizontal"
+                    android:paddingTop="@dimen/edittext_horizontal_small"
+                    android:text="Bogor Barat"
+                    android:textSize="@dimen/text_medium" />
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_kelurahan"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+
+                </LinearLayout>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/edittext_horizontal"
+                    android:paddingTop="@dimen/edittext_horizontal_small"
+                    android:text="Menteng"
+                    android:textSize="@dimen/text_medium" />
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_tempat_tinggal"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+
+                </LinearLayout>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edittext_address"
+                    android:gravity="top|start"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:inputType="textMultiLine"
+                    android:imeOptions="flagNoEnterAction"
+                    android:maxLines="4"
+                    android:paddingBottom="@dimen/edittext_horizontal"
+                    android:paddingTop="@dimen/edittext_horizontal_small"
+                    android:text="Balittro No.4 Bumi Menteng Asri"
+                    android:textSize="@dimen/text_medium" />
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_kode_pos"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+
+                </LinearLayout>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/edittext_horizontal"
+                    android:paddingTop="@dimen/edittext_horizontal_small"
+                    android:text="16111"
+                    android:textSize="@dimen/text_medium" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBackgroundPrimary"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activityVerticalMarginFirst"
+                android:paddingLeft="@dimen/activityHorizontalMargin"
+                android:paddingRight="@dimen/activityHorizontalMargin"
+                android:paddingTop="@dimen/activityVerticalMarginFirst">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/label_orang_tua"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_big_second" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_orang_tua_description"
+                    android:textColor="@color/colorBlackSecondary"
+                    android:textSize="@dimen/text_small" />
+
+            </LinearLayout>
+
+            <!-- - -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activityVerticalMargin"
+                android:paddingLeft="@dimen/activityHorizontalMargin"
+                android:paddingRight="@dimen/activityHorizontalMargin"
+                android:paddingTop="@dimen/activityVerticalMargin">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_nama_wali"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+
+                </LinearLayout>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/edittext_horizontal"
+                    android:paddingTop="@dimen/edittext_horizontal_small"
+                    android:text="Drs. Sudiarto"
+                    android:textSize="@dimen/text_medium" />
+
+                <!-- - -->
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.95"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/input_anak_ke"
+                                android:textSize="@dimen/text_small" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="@dimen/text_extra_small" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/inputBottomMedium"
+                            android:background="@drawable/edittext_primary"
+                            android:descendantFocusability="beforeDescendants"
+                            android:focusable="true"
+                            android:focusableInTouchMode ="true"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:paddingBottom="@dimen/edittext_horizontal"
+                            android:paddingTop="@dimen/edittext_horizontal_small"
+                            android:text="2"
+                            android:textSize="@dimen/text_medium" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.95"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/input_jumlah_saudara"
+                                android:textSize="@dimen/text_small" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:text="@string/input_jumlah_saudara_note"
+                                android:textColor="@color/colorAccent"
+                                android:textSize="@dimen/text_extra_small" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/inputBottomMedium"
+                            android:background="@drawable/edittext_primary"
+                            android:descendantFocusability="beforeDescendants"
+                            android:focusable="true"
+                            android:focusableInTouchMode ="true"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:paddingBottom="@dimen/edittext_horizontal"
+                            android:paddingTop="@dimen/edittext_horizontal_small"
+                            android:text="2"
+                            android:textSize="@dimen/text_medium" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBackgroundPrimary"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activityVerticalMarginFirst"
+                android:paddingLeft="@dimen/activityHorizontalMargin"
+                android:paddingRight="@dimen/activityHorizontalMargin"
+                android:paddingTop="@dimen/activityVerticalMarginFirst">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/label_perkumpulan"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/text_big_second" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_perkumpulan_description"
+                    android:textColor="@color/colorBlackSecondary"
+                    android:textSize="@dimen/text_small" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/activityVerticalMargin"
+                android:paddingLeft="@dimen/activityHorizontalMargin"
+                android:paddingRight="@dimen/activityHorizontalMargin"
+                android:paddingTop="@dimen/activityVerticalMargin">
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_cabang_olahraga"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+
+                </LinearLayout>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/edittext_horizontal"
+                    android:paddingTop="@dimen/edittext_horizontal_small"
+                    android:text="Baseball"
+                    android:textSize="@dimen/text_medium" />
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_klub"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+
+                </LinearLayout>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/edittext_horizontal"
+                    android:paddingTop="@dimen/edittext_horizontal_small"
+                    android:text="Baseball Junior Kota Bogor"
+                    android:textSize="@dimen/text_medium" />
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_alamat_klub"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/required"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/text_extra_small" />
+
+                </LinearLayout>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edittext_address"
+                    android:gravity="top|start"
+                    android:layout_marginBottom="@dimen/inputBottomMedium"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:inputType="textMultiLine"
+                    android:imeOptions="flagNoEnterAction"
+                    android:maxLines="4"
+                    android:paddingBottom="@dimen/edittext_horizontal"
+                    android:paddingTop="@dimen/edittext_horizontal_small"
+                    android:text="GOR Padjajaran, \nBogor Selatan, \nKota Bogor 142821"
+                    android:textSize="@dimen/text_medium" />
+
+                <!-- - -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/input_catatan"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/input_catatan_description"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_extra_small" />
+
+                </LinearLayout>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edittext_address"
+                    android:gravity="top|start"
+                    android:background="@drawable/edittext_primary"
+                    android:descendantFocusability="beforeDescendants"
+                    android:focusable="true"
+                    android:focusableInTouchMode ="true"
+                    android:inputType="textMultiLine"
+                    android:imeOptions="flagNoEnterAction"
+                    android:maxLines="4"
+                    android:paddingBottom="@dimen/edittext_horizontal"
+                    android:paddingTop="@dimen/edittext_horizontal_small"
+                    android:text="Kejuaraan SEA Games 2001\nKejuaraan LKS Tingkat Nasional 2008"
+                    android:textSize="@dimen/text_medium" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/buttonHeighMedium"
+                android:background="@drawable/button_primary_rectangle"
+                android:stateListAnimator="@null"
+                android:text="@string/done"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/buttonMedium"
+                android:layout_marginLeft="@dimen/activityHorizontalMargin"
+                android:layout_marginRight="@dimen/activityHorizontalMargin"
+                android:layout_marginBottom="@dimen/activityVerticalMargin"
+                android:layout_marginTop="@dimen/activityVerticalMargin" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>
