@@ -1,14 +1,16 @@
 package com.vendumedia.atlit.activity
 
+import android.Manifest
 import android.app.DatePickerDialog
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 
 import com.vendumedia.atlit.R
 import kotterknife.bindView
 import android.graphics.Rect
+import android.support.v7.widget.AppCompatImageButton
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
@@ -19,40 +21,83 @@ import io.reactivex.schedulers.Schedulers
 import java.text.SimpleDateFormat
 import java.util.*
 import android.widget.Spinner
+import android.widget.Toast
+import android.graphics.Bitmap
+import android.util.Base64
+import java.io.ByteArrayOutputStream
+import android.graphics.BitmapFactory
+import android.os.Build
+import android.os.Handler
+import android.view.Gravity
+import com.vendumedia.atlit.api.Pendaftar
+import io.vrinda.kotlinpermissions.PermissionCallBack
+import io.vrinda.kotlinpermissions.PermissionsActivity
+import java.io.FileNotFoundException
+import java.io.InputStream
 
+class MainActivity : PermissionsActivity() {
 
+    val provinsi : Spinner by bindView(R.id.in_provinsi)
+    var provinces : MutableList<String> = mutableListOf<String>()
+    var provincesId : MutableList<Int> = mutableListOf<Int>()
 
-class MainActivity : AppCompatActivity() {
+    val city : Spinner by bindView(R.id.in_kota)
+    var cities : MutableList<String> = mutableListOf<String>()
+    var citiesId : MutableList<Int> = mutableListOf<Int>()
 
-    val provinsi: Spinner by bindView(R.id.in_provinsi)
-    var provinces: MutableList<String> = mutableListOf<String>()
-    var provincesId: MutableList<Int> = mutableListOf<Int>()
+    val district : Spinner by bindView(R.id.in_kecamatan)
+    var districts : MutableList<String> = mutableListOf<String>()
+    var districtsId : MutableList<Long> = mutableListOf<Long>()
 
-    val city: Spinner by bindView(R.id.in_kota)
-    var cities: MutableList<String> = mutableListOf<String>()
-    var citiesId: MutableList<Int> = mutableListOf<Int>()
+    val village : Spinner by bindView(R.id.in_desa)
+    var villages : MutableList<String> = mutableListOf<String>()
+    var villagesId : MutableList<Long> = mutableListOf<Long>()
 
-    val district: Spinner by bindView(R.id.in_kecamatan)
-    var districts: MutableList<String> = mutableListOf<String>()
-    var districtsId: MutableList<Long> = mutableListOf<Long>()
+    val pickAkta : AppCompatImageButton by bindView(R.id.pick_akta_kelahiran)
+    val pickSttb : AppCompatImageButton by bindView(R.id.pick_sttb)
+    val pickPrestasi : AppCompatImageButton by bindView(R.id.pick_prestasi)
+    val buttonDone : AppCompatImageButton by bindView(R.id.submit_done)
 
-    val village: Spinner by bindView(R.id.in_desa)
-    var villages: MutableList<String> = mutableListOf<String>()
-    var villagesId: MutableList<Long> = mutableListOf<Long>()
+    val progressAlamat : ProgressBar by bindView(R.id.progress_alamat)
+    val golonganDarah : Spinner by bindView(R.id.in_golongan_darah)
+    val aktaKelahiran : Spinner by bindView(R.id.in_akta_kelahiran)
+    val sttb : Spinner by bindView(R.id.in_sttb)
+    val prestasi : Spinner by bindView(R.id.in_prestasi)
+    val tanggalLahir : EditText by bindView(R.id.in_tanggal_lahir)
+    val alamat : EditText by bindView(R.id.in_alamat)
+    val kodePos : EditText by bindView(R.id.in_kodepos)
+    var disposable : Disposable? = null
+    var imageAkta : String? = ""
+    var imageSttb : String? = ""
+    var imagePrestasi : String? = ""
 
-    val progressAlamat: ProgressBar by bindView(R.id.progress_alamat)
-    val golonganDarah: Spinner by bindView(R.id.in_golongan_darah)
-    val aktaKelahiran: Spinner by bindView(R.id.in_akta_kelahiran)
-    val sttb: Spinner by bindView(R.id.in_sttb)
-    val prestasi: Spinner by bindView(R.id.in_prestasi)
-    val tanggalLahir: EditText by bindView(R.id.in_tanggal_lahir)
-    val alamat: EditText by bindView(R.id.in_alamat)
-    val kodePos: EditText by bindView(R.id.in_kodepos)
-    var disposable: Disposable? = null
+    val nama : EditText by bindView(R.id.in_full_name)
+    val tempatLahir : EditText by bindView(R.id.in_tempat_lahir)
+    val asalSekolah : EditText by bindView(R.id.in_asal_sekolah)
+    val tinggiBadan : EditText by bindView(R.id.in_tinggi)
+    val beratBadan : EditText by bindView(R.id.in_berat)
+    val phone : EditText by bindView(R.id.in_phone)
+    val hobby : EditText by bindView(R.id.in_hobby)
+    val namaWali : EditText by bindView(R.id.in_wali)
+    val anakKe : EditText by bindView(R.id.in_anak_ke)
+    val jumlahSaudara : EditText by bindView(R.id.in_jumlah_saudara)
+    val cabangOlahraga : EditText by bindView(R.id.in_cabang_olahraga)
+    val namaClub : EditText by bindView(R.id.in_nama_club)
+    val alamatClub : EditText by bindView(R.id.in_alamat_club)
+    val prestasiTerbaik : EditText by bindView(R.id.in_prestasi_terbaik)
+
 
     val indonesia by lazy {
         Indonesia.create()
     }
+
+    val pendaftar by lazy {
+        Pendaftar.create()
+    }
+
+    private val REQUEST_SELECT_IMAGE_IN_ALBUM_AKTA = 1
+    private val REQUEST_SELECT_IMAGE_IN_ALBUM_STTB = 2
+    private val REQUEST_SELECT_IMAGE_IN_ALBUM_PRESTASI = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +124,27 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+
+        pickAkta.setOnClickListener {
+            selectImageInAlbum(REQUEST_SELECT_IMAGE_IN_ALBUM_AKTA)
+        }
+
+        pickSttb.setOnClickListener {
+            selectImageInAlbum(REQUEST_SELECT_IMAGE_IN_ALBUM_STTB)
+        }
+
+        pickPrestasi.setOnClickListener {
+            selectImageInAlbum(REQUEST_SELECT_IMAGE_IN_ALBUM_PRESTASI)
+        }
+
+        buttonDone.setOnClickListener {
+            submitData()
+        }
+
+    }
+
+    private fun submitData() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -128,16 +194,19 @@ class MainActivity : AppCompatActivity() {
                 R.layout.spinner_single_simple, resources.getStringArray(R.array.kota))
         adapterKota.setDropDownViewResource(R.layout.spinner_dropdown_simple)
         city.adapter = adapterKota
+        city.isEnabled = false
 
         val adapterKecamatan = ArrayAdapter(this,
                 R.layout.spinner_single_simple, resources.getStringArray(R.array.kecamatan))
         adapterKecamatan.setDropDownViewResource(R.layout.spinner_dropdown_simple)
         district.adapter = adapterKecamatan
+        district.isEnabled = false
 
         val adapterDesa = ArrayAdapter(this,
                 R.layout.spinner_single_simple, resources.getStringArray(R.array.desa))
         adapterDesa.setDropDownViewResource(R.layout.spinner_dropdown_simple)
         village.adapter = adapterDesa
+        village.isEnabled = false
 
 
 
@@ -389,5 +458,83 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
         disposable?.dispose()
     }
+
+    fun selectImageInAlbum(req: Int) {
+
+        var status = true
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, object : PermissionCallBack {
+                override fun permissionGranted() {
+                    super.permissionGranted()
+                }
+
+                override fun permissionDenied() {
+                    super.permissionDenied()
+                    status = false
+                }
+            })
+        }
+
+        if(status){
+            val intent = Intent()
+            intent.type = "image/*"
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent, "Pilih Dokumen"), req)
+        }
+
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == RESULT_OK) {
+            if(data?.data != null) {
+                var imageStream: InputStream? = null
+                try {
+                    imageStream = this.contentResolver.openInputStream(data?.data)
+                } catch (e: FileNotFoundException) {
+                    e.printStackTrace()
+                }
+
+                val selectedImage = BitmapFactory.decodeStream(imageStream)
+                var imgBase64 = encodeTobase64(selectedImage)
+
+                if (requestCode == REQUEST_SELECT_IMAGE_IN_ALBUM_AKTA)
+                    imageAkta = imgBase64
+                else if (requestCode == REQUEST_SELECT_IMAGE_IN_ALBUM_STTB)
+                    imageSttb = imgBase64
+                else if (requestCode == REQUEST_SELECT_IMAGE_IN_ALBUM_PRESTASI)
+                    imagePrestasi = imgBase64
+            }
+        }
+
+        return
+    }
+
+    fun encodeTobase64(image: Bitmap): String {
+        val baos = ByteArrayOutputStream()
+        image.compress(Bitmap.CompressFormat.JPEG, 40, baos)
+        val b = baos.toByteArray()
+        val imageEncoded = Base64.encodeToString(b, Base64.DEFAULT)
+
+        return imageEncoded
+    }
+
+    internal var doubleBackToExitPressedOnce = false
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+
+            super.onBackPressed()
+            return
+        }
+
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(this, "Tap sekali lagi untuk keluar", Toast.LENGTH_SHORT).show()
+
+        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+    }
+
 
 }

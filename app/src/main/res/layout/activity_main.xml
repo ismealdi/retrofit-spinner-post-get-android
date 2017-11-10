@@ -108,6 +108,7 @@
 
 
                 <EditText
+                    android:id="@+id/in_full_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/inputBottomMedium"
@@ -147,12 +148,14 @@
 
 
                 <RadioGroup
+                    android:id="@+id/in_gender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/inputBottomMedium"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/in_gender_male"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-12dp"
@@ -162,6 +165,7 @@
                         android:textSize="@dimen/text_medium" />
 
                     <RadioButton
+                        android:id="@+id/in_gender_female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:scaleX=".8"
@@ -205,6 +209,7 @@
                         </LinearLayout>
 
                         <EditText
+                            android:id="@+id/in_tempat_lahir"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/inputBottomMedium"
@@ -294,6 +299,7 @@
                 </LinearLayout>
 
                 <EditText
+                    android:id="@+id/in_asal_sekolah"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/inputBottomMedium"
@@ -338,12 +344,13 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="end"
-                                android:text="kg"
+                                android:text="cm"
                                 android:textColor="@color/colorAccent"
                                 android:textSize="@dimen/text_extra_small" />
                         </LinearLayout>
 
                         <EditText
+                            android:id="@+id/in_tinggi"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/inputBottomMedium"
@@ -386,13 +393,13 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="end"
-                                android:text="cm"
+                                android:text="kg "
                                 android:textColor="@color/colorAccent"
                                 android:textSize="@dimen/text_extra_small" />
                         </LinearLayout>
 
                         <EditText
-                            android:id="@+id/editText"
+                            android:id="@+id/in_berat"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/inputBottomMedium"
@@ -467,6 +474,7 @@
                 </LinearLayout>
 
                 <EditText
+                    android:id="@+id/in_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/inputBottomMedium"
@@ -505,6 +513,7 @@
                 </LinearLayout>
 
                 <EditText
+                    android:id="@+id/in_hobby"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_primary"
@@ -582,17 +591,41 @@
 
                 </LinearLayout>
 
-                <Spinner
-                    android:id="@+id/in_akta_kelahiran"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_primary"
-                    android:descendantFocusability="beforeDescendants"
-                    android:focusable="true"
-                    android:focusableInTouchMode ="true"
-                    android:imeOptions="actionNext"
-                    android:textSize="@dimen/text_medium"
-                    android:layout_marginBottom="@dimen/inputBottomMedium" />
+                    android:orientation="horizontal">
+                    <Spinner
+                        android:id="@+id/in_akta_kelahiran"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".80"
+                        android:background="@drawable/edittext_primary"
+                        android:descendantFocusability="beforeDescendants"
+                        android:focusable="true"
+                        android:focusableInTouchMode ="true"
+                        android:imeOptions="actionNext"
+                        android:textSize="@dimen/text_medium"
+                        android:layout_marginBottom="@dimen/inputBottomMedium" />
+
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.01"/>
+
+                    <android.support.v7.widget.AppCompatImageButton
+                        android:id="@+id/pick_akta_kelahiran"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/spinner_side_button_medium"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight=".19"
+                        android:background="@drawable/button_secondary_rectangle"
+                        android:stateListAnimator="@null"
+                        android:src="@drawable/ic_insert_photo_white_18dp" />
+                </LinearLayout>
+
+
 
                 <!-- - -->
 
@@ -617,17 +650,39 @@
 
                 </LinearLayout>
 
-                <Spinner
-                    android:id="@+id/in_sttb"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_primary"
-                    android:descendantFocusability="beforeDescendants"
-                    android:focusable="true"
-                    android:focusableInTouchMode ="true"
-                    android:imeOptions="actionNext"
-                    android:textSize="@dimen/text_medium"
-                    android:layout_marginBottom="@dimen/inputBottomMedium"/>
+                    android:orientation="horizontal">
+                    <Spinner
+                        android:id="@+id/in_sttb"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".80"
+                        android:background="@drawable/edittext_primary"
+                        android:descendantFocusability="beforeDescendants"
+                        android:focusable="true"
+                        android:focusableInTouchMode ="true"
+                        android:imeOptions="actionNext"
+                        android:textSize="@dimen/text_medium"
+                        android:layout_marginBottom="@dimen/inputBottomMedium" />
+
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.01"/>
+
+                    <android.support.v7.widget.AppCompatImageButton
+                        android:id="@+id/pick_sttb"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/spinner_side_button_medium"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight=".19"
+                        android:background="@drawable/button_secondary_rectangle"
+                        android:stateListAnimator="@null"
+                        android:src="@drawable/ic_insert_photo_white_18dp" />
+                </LinearLayout>
 
                 <!-- - -->
 
@@ -652,17 +707,38 @@
 
                 </LinearLayout>
 
-                <Spinner
-                    android:id="@+id/in_prestasi"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_primary"
-                    android:descendantFocusability="beforeDescendants"
-                    android:focusable="true"
-                    android:focusableInTouchMode ="true"
-                    android:imeOptions="actionNext"
-                    android:textSize="@dimen/text_medium"
-                    android:layout_marginBottom="@dimen/inputBottomMedium"/>
+                    android:orientation="horizontal">
+                    <Spinner
+                        android:id="@+id/in_prestasi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".80"
+                        android:background="@drawable/edittext_primary"
+                        android:descendantFocusability="beforeDescendants"
+                        android:focusable="true"
+                        android:focusableInTouchMode ="true"
+                        android:imeOptions="actionNext"
+                        android:textSize="@dimen/text_medium"/>
+
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.01"/>
+
+                    <android.support.v7.widget.AppCompatImageButton
+                        android:id="@+id/pick_prestasi"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/spinner_side_button_medium"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight=".19"
+                        android:background="@drawable/button_secondary_rectangle"
+                        android:stateListAnimator="@null"
+                        android:src="@drawable/ic_insert_photo_white_18dp" />
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -1003,6 +1079,7 @@
 
 
                 <EditText
+                    android:id="@+id/in_wali"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/inputBottomMedium"
@@ -1053,6 +1130,7 @@
                         </LinearLayout>
 
                         <EditText
+                            android:id="@+id/in_anak_ke"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/inputBottomMedium"
@@ -1101,6 +1179,7 @@
                         </LinearLayout>
 
                         <EditText
+                            android:id="@+id/in_jumlah_saudara"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/inputBottomMedium"
@@ -1183,6 +1262,7 @@
 
 
                 <EditText
+                    android:id="@+id/in_cabang_olahraga"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/inputBottomMedium"
@@ -1223,6 +1303,7 @@
 
 
                 <EditText
+                    android:id="@+id/in_nama_club"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/inputBottomMedium"
@@ -1263,6 +1344,7 @@
 
 
                 <EditText
+                    android:id="@+id/in_alamat_club"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edittext_address"
                     android:gravity="top|start"
@@ -1304,6 +1386,7 @@
 
 
                 <EditText
+                    android:id="@+id/in_prestasi_terbaik"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/edittext_address"
                     android:gravity="top|start"
@@ -1322,6 +1405,7 @@
             </LinearLayout>
 
             <android.support.v7.widget.AppCompatButton
+                android:id="@+id/submit_done"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/buttonHeighMedium"
                 android:background="@drawable/button_primary_rectangle"
