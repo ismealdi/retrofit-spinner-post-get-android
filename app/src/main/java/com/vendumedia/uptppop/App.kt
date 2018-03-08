@@ -1,4 +1,4 @@
-package com.vendumedia.atlit
+package com.vendumedia.uptppop
 
 import android.app.Application
 
@@ -16,8 +16,8 @@ class App : Application() {
 
     companion object {
 
-        var API = "http://192.168.43.29/atlit/public/api/v1/"
-        var URL = "http://sushitei.craniumstaging.xyz/"
+        var API = "http://uptppopkabbogor.com/api/v1/"
+        var URL = "http://uptppopkabbogor.com"
     }
 
 

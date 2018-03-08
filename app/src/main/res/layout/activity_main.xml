@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context="com.vendumedia.atlit.activity.MainActivity">
+    tools:context="com.vendumedia.uptppop.activity.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -84,46 +84,93 @@
                 android:paddingRight="@dimen/activityHorizontalMargin"
                 android:paddingTop="@dimen/activityVerticalMarginFirst">
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:weightSum="2"
                     android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/input_nama"
-                        android:textSize="@dimen/text_small" />
+                        android:layout_weight="1.7"
+                        android:orientation="vertical"
+                        android:paddingRight="15dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="match_parent"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/input_nama"
+                                android:textSize="@dimen/text_small" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:text="@string/required"
+                                android:textColor="@color/colorRed"
+
+                                android:textSize="@dimen/text_extra_small" />
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/in_full_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/inputBottomMedium"
+                            android:background="@drawable/edittext_primary"
+                            android:descendantFocusability="beforeDescendants"
+                            android:focusable="true"
+                            android:focusableInTouchMode ="true"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPersonName"
+                            android:maxLines="1"
+                            android:paddingBottom="@dimen/edittext_horizontal"
+                            android:paddingTop="@dimen/edittext_horizontal_small"
+                            android:text=""
+                            android:textSize="@dimen/text_medium" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:text="@string/required"
-                        android:textColor="@color/colorRed"
+                        android:layout_weight="0.3"
+                        android:orientation="vertical">
 
-                        android:textSize="@dimen/text_extra_small" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/input_foto"
+                                android:textSize="@dimen/text_small" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end"
+                                android:text="@string/required"
+                                android:textColor="@color/colorRed"
+
+                                android:textSize="@dimen/text_extra_small" />
+                        </LinearLayout>
+                        <android.support.v7.widget.AppCompatImageButton
+                            android:id="@+id/pick_foto"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/inputBottomSmall"
+                            android:layout_height="34dp"
+                            android:background="@drawable/button_secondary_rectangle"
+                            android:stateListAnimator="@null"
+                            android:src="@drawable/ic_insert_photo_white_18dp" />
+
+                    </LinearLayout>
                 </LinearLayout>
-
-
-                <EditText
-                    android:id="@+id/in_full_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/inputBottomMedium"
-                    android:background="@drawable/edittext_primary"
-                    android:descendantFocusability="beforeDescendants"
-                    android:focusable="true"
-                    android:focusableInTouchMode ="true"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPersonName"
-                    android:maxLines="1"
-                    android:paddingBottom="@dimen/edittext_horizontal"
-                    android:paddingTop="@dimen/edittext_horizontal_small"
-                    android:text="Aldi Maulana"
-                    android:textSize="@dimen/text_medium" />
-
                 <!-- - -->
 
                 <LinearLayout
@@ -222,7 +269,7 @@
                             android:maxLines="1"
                             android:paddingBottom="@dimen/edittext_horizontal"
                             android:paddingTop="@dimen/edittext_horizontal_small"
-                            android:text="Bogor"
+                            android:text=""
                             android:textSize="@dimen/text_medium" />
                     </LinearLayout>
 
@@ -270,7 +317,7 @@
                             android:maxLines="1"
                             android:paddingBottom="@dimen/edittext_horizontal"
                             android:paddingTop="@dimen/edittext_horizontal_small"
-                            android:text="19 Mei 1991"
+                            android:text=""
                             android:textSize="@dimen/text_medium" />
                     </LinearLayout>
                 </LinearLayout>
@@ -312,7 +359,7 @@
                     android:maxLines="1"
                     android:paddingBottom="@dimen/edittext_horizontal"
                     android:paddingTop="@dimen/edittext_horizontal_small"
-                    android:text="SMK Adi Sanggoro"
+                    android:text=""
                     android:textSize="@dimen/text_medium" />
 
                 <!-- - -->
@@ -363,7 +410,7 @@
                             android:maxLines="1"
                             android:paddingBottom="@dimen/edittext_horizontal"
                             android:paddingTop="@dimen/edittext_horizontal_small"
-                            android:text="162"
+                            android:text=""
                             android:textSize="@dimen/text_medium" />
                     </LinearLayout>
 
@@ -412,7 +459,7 @@
                             android:maxLines="1"
                             android:paddingBottom="@dimen/edittext_horizontal"
                             android:paddingTop="@dimen/edittext_horizontal_small"
-                            android:text="57"
+                            android:text=""
                             android:textSize="@dimen/text_medium" />
                     </LinearLayout>
                 </LinearLayout>
@@ -487,7 +534,7 @@
                     android:maxLines="1"
                     android:paddingBottom="@dimen/edittext_horizontal"
                     android:paddingTop="@dimen/edittext_horizontal_small"
-                    android:text="087770122245"
+                    android:text=""
                     android:textSize="@dimen/text_medium" />
 
                 <!-- - -->
@@ -525,7 +572,7 @@
                     android:maxLines="1"
                     android:paddingBottom="@dimen/edittext_horizontal"
                     android:paddingTop="@dimen/edittext_horizontal_small"
-                    android:text="Tidur"
+                    android:text=""
                     android:textSize="@dimen/text_medium" />
 
 
@@ -970,7 +1017,7 @@
                     android:maxLines="4"
                     android:paddingBottom="@dimen/edittext_horizontal"
                     android:paddingTop="@dimen/edittext_horizontal_small"
-                    android:text="Balittro No.4 Bumi Menteng Asri"
+                    android:text=""
                     android:textSize="@dimen/text_medium" />
 
                 <!-- - -->
@@ -1010,7 +1057,7 @@
                     android:maxLines="1"
                     android:paddingBottom="@dimen/edittext_horizontal"
                     android:paddingTop="@dimen/edittext_horizontal_small"
-                    android:text="16111"
+                    android:text=""
                     android:textSize="@dimen/text_medium" />
 
 
@@ -1092,7 +1139,7 @@
                     android:maxLines="1"
                     android:paddingBottom="@dimen/edittext_horizontal"
                     android:paddingTop="@dimen/edittext_horizontal_small"
-                    android:text="Drs. Sudiarto"
+                    android:text=""
                     android:textSize="@dimen/text_medium" />
 
                 <!-- - -->
@@ -1143,7 +1190,7 @@
                             android:maxLines="1"
                             android:paddingBottom="@dimen/edittext_horizontal"
                             android:paddingTop="@dimen/edittext_horizontal_small"
-                            android:text="2"
+                            android:text=""
                             android:textSize="@dimen/text_medium" />
                     </LinearLayout>
 
@@ -1192,7 +1239,7 @@
                             android:maxLines="1"
                             android:paddingBottom="@dimen/edittext_horizontal"
                             android:paddingTop="@dimen/edittext_horizontal_small"
-                            android:text="2"
+                            android:text=""
                             android:textSize="@dimen/text_medium" />
                     </LinearLayout>
                 </LinearLayout>
@@ -1275,7 +1322,7 @@
                     android:maxLines="1"
                     android:paddingBottom="@dimen/edittext_horizontal"
                     android:paddingTop="@dimen/edittext_horizontal_small"
-                    android:text="Baseball"
+                    android:text=""
                     android:textSize="@dimen/text_medium" />
 
                 <!-- - -->
@@ -1316,7 +1363,7 @@
                     android:maxLines="1"
                     android:paddingBottom="@dimen/edittext_horizontal"
                     android:paddingTop="@dimen/edittext_horizontal_small"
-                    android:text="Baseball Junior Kota Bogor"
+                    android:text=""
                     android:textSize="@dimen/text_medium" />
 
                 <!-- - -->
@@ -1358,7 +1405,7 @@
                     android:maxLines="4"
                     android:paddingBottom="@dimen/edittext_horizontal"
                     android:paddingTop="@dimen/edittext_horizontal_small"
-                    android:text="GOR Padjajaran, \nBogor Selatan, \nKota Bogor 142821"
+                    android:text=""
                     android:textSize="@dimen/text_medium" />
 
                 <!-- - -->
@@ -1399,7 +1446,7 @@
                     android:maxLines="4"
                     android:paddingBottom="@dimen/edittext_horizontal"
                     android:paddingTop="@dimen/edittext_horizontal_small"
-                    android:text="Kejuaraan SEA Games 2001\nKejuaraan LKS Tingkat Nasional 2008"
+                    android:text=""
                     android:textSize="@dimen/text_medium" />
 
             </LinearLayout>

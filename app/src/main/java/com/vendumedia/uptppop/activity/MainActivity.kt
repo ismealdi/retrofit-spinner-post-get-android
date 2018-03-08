@@ -1,4 +1,4 @@
-package com.vendumedia.atlit.activity
+package com.vendumedia.uptppop.activity
 
 import android.Manifest
 import android.app.DatePickerDialog
@@ -7,14 +7,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 
-import com.vendumedia.atlit.R
+import com.vendumedia.uptppop.R
 import kotterknife.bindView
 import android.graphics.Rect
 import android.support.v7.widget.AppCompatImageButton
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
-import com.vendumedia.atlit.api.Indonesia
+import com.vendumedia.uptppop.api.Indonesia
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -27,9 +27,10 @@ import android.util.Base64
 import java.io.ByteArrayOutputStream
 import android.graphics.BitmapFactory
 import android.os.Build
-import android.os.Handler
-import android.view.Gravity
-import com.vendumedia.atlit.api.Pendaftar
+import android.support.v7.widget.AppCompatButton
+import android.util.Log
+import com.vendumedia.uptppop.api.Pendaftar
+import com.vendumedia.uptppop.model.Register
 import io.vrinda.kotlinpermissions.PermissionCallBack
 import io.vrinda.kotlinpermissions.PermissionsActivity
 import java.io.FileNotFoundException
@@ -52,11 +53,13 @@ class MainActivity : PermissionsActivity() {
     val village : Spinner by bindView(R.id.in_desa)
     var villages : MutableList<String> = mutableListOf<String>()
     var villagesId : MutableList<Long> = mutableListOf<Long>()
+    var idLocation : String? = ""
 
     val pickAkta : AppCompatImageButton by bindView(R.id.pick_akta_kelahiran)
     val pickSttb : AppCompatImageButton by bindView(R.id.pick_sttb)
     val pickPrestasi : AppCompatImageButton by bindView(R.id.pick_prestasi)
-    val buttonDone : AppCompatImageButton by bindView(R.id.submit_done)
+    val pickFoto : AppCompatImageButton by bindView(R.id.pick_foto)
+    val buttonDone : AppCompatButton by bindView(R.id.submit_done)
 
     val progressAlamat : ProgressBar by bindView(R.id.progress_alamat)
     val golonganDarah : Spinner by bindView(R.id.in_golongan_darah)
@@ -70,6 +73,7 @@ class MainActivity : PermissionsActivity() {
     var imageAkta : String? = ""
     var imageSttb : String? = ""
     var imagePrestasi : String? = ""
+    var imageFoto : String? = ""
 
     val nama : EditText by bindView(R.id.in_full_name)
     val tempatLahir : EditText by bindView(R.id.in_tempat_lahir)
@@ -85,6 +89,7 @@ class MainActivity : PermissionsActivity() {
     val namaClub : EditText by bindView(R.id.in_nama_club)
     val alamatClub : EditText by bindView(R.id.in_alamat_club)
     val prestasiTerbaik : EditText by bindView(R.id.in_prestasi_terbaik)
+    val gender : RadioGroup by bindView(R.id.in_gender)
 
 
     val indonesia by lazy {
@@ -98,6 +103,7 @@ class MainActivity : PermissionsActivity() {
     private val REQUEST_SELECT_IMAGE_IN_ALBUM_AKTA = 1
     private val REQUEST_SELECT_IMAGE_IN_ALBUM_STTB = 2
     private val REQUEST_SELECT_IMAGE_IN_ALBUM_PRESTASI = 3
+    private val REQUEST_SELECT_IMAGE_IN_FOTO = 4
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -137,6 +143,10 @@ class MainActivity : PermissionsActivity() {
             selectImageInAlbum(REQUEST_SELECT_IMAGE_IN_ALBUM_PRESTASI)
         }
 
+        pickFoto.setOnClickListener {
+            selectImageInAlbum(REQUEST_SELECT_IMAGE_IN_FOTO)
+        }
+
         buttonDone.setOnClickListener {
             submitData()
         }
@@ -144,7 +154,28 @@ class MainActivity : PermissionsActivity() {
     }
 
     private fun submitData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val kelamin : RadioButton = findViewById(gender.checkedRadioButtonId);
+        val registerData: Register.Data
+        registerData = Register.Data(alamat.text.toString(), alamatClub.text.toString(), anakKe.text.toString(), asalSekolah.text.toString(), beratBadan.text.toString(), cabangOlahraga.text.toString(),
+                imageFoto.toString(), imageAkta.toString(), imagePrestasi.toString(), imageSttb.toString(), nama.text.toString(), golonganDarah.selectedItem.toString(), hobby.text.toString(), idLocation.toString(),
+                kelamin.text.toString(), jumlahSaudara.text.toString(), kodePos.text.toString(), namaClub.text.toString(), namaWali.text.toString(), phone.text.toString(), prestasiTerbaik.text.toString(), tanggalLahir.text.toString(), tempatLahir.text.toString(), tinggiBadan.text.toString());
+
+        Log.i("aldieemaulana", "aldieemaulana: " + registerData.toString())
+        Toast.makeText(this, "Loading ..", Toast.LENGTH_SHORT).show()
+        disposable = pendaftar.store(registerData)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { result ->
+                            Log.i("aldieemaulana", "aldieemaulana: " + result.data.toString())
+
+                             Toast.makeText(this, "${result.message}", Toast.LENGTH_SHORT).show()
+                        },
+                        { error ->
+                            Log.i("aldieemaulana", "aldieemaulana: " + error.localizedMessage)
+                            Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
+                        }
+                )
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -437,6 +468,7 @@ class MainActivity : PermissionsActivity() {
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (villagesId.count() > 0 && position > 0) {
+                    idLocation = villagesId.get(position).toString()
                     alamat.isEnabled = true
                     kodePos.isEnabled = true
                 }
@@ -499,7 +531,7 @@ class MainActivity : PermissionsActivity() {
                 }
 
                 val selectedImage = BitmapFactory.decodeStream(imageStream)
-                var imgBase64 = encodeTobase64(selectedImage)
+                var imgBase64 = encodeToBase64(selectedImage)
 
                 if (requestCode == REQUEST_SELECT_IMAGE_IN_ALBUM_AKTA)
                     imageAkta = imgBase64
@@ -507,33 +539,23 @@ class MainActivity : PermissionsActivity() {
                     imageSttb = imgBase64
                 else if (requestCode == REQUEST_SELECT_IMAGE_IN_ALBUM_PRESTASI)
                     imagePrestasi = imgBase64
+                else if (requestCode == REQUEST_SELECT_IMAGE_IN_FOTO)
+                    imageFoto = imgBase64
             }
         }
 
         return
     }
 
-    fun encodeTobase64(image: Bitmap): String {
-        val baos = ByteArrayOutputStream()
-        image.compress(Bitmap.CompressFormat.JPEG, 40, baos)
-        val b = baos.toByteArray()
-        val imageEncoded = Base64.encodeToString(b, Base64.DEFAULT)
+    private fun encodeToBase64(image: Bitmap): String {
+        val byteArray = ByteArrayOutputStream()
+        image.compress(Bitmap.CompressFormat.JPEG, 40, byteArray)
+        val b = byteArray.toByteArray()
 
-        return imageEncoded
-    }
-
-    internal var doubleBackToExitPressedOnce = false
-    override fun onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-
-            super.onBackPressed()
-            return
-        }
-
-        this.doubleBackToExitPressedOnce = true
-        Toast.makeText(this, "Tap sekali lagi untuk keluar", Toast.LENGTH_SHORT).show()
-
-        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+        return Base64.encodeToString(
+                b,
+                Base64.DEFAULT
+        )
     }
 
 

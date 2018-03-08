@@ -1,4 +1,4 @@
-package com.vendumedia.atlit
+package com.vendumedia.uptppop
 
 import org.junit.Test
 

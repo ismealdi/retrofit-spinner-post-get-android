@@ -1,10 +1,10 @@
-package com.vendumedia.atlit.api
+package com.vendumedia.uptppop.api
 
-import com.vendumedia.atlit.App
-import com.vendumedia.atlit.model.City
-import com.vendumedia.atlit.model.District
-import com.vendumedia.atlit.model.Province
-import com.vendumedia.atlit.model.Village
+import com.vendumedia.uptppop.App
+import com.vendumedia.uptppop.model.City
+import com.vendumedia.uptppop.model.District
+import com.vendumedia.uptppop.model.Province
+import com.vendumedia.uptppop.model.Village
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

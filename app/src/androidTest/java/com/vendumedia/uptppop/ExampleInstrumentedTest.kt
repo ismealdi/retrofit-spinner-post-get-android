@@ -1,6 +1,5 @@
-package com.vendumedia.atlit
+package com.vendumedia.uptppop
 
-import android.content.Context
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 
@@ -22,6 +21,6 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
 
-        assertEquals("com.vendumedia.atlit", appContext.packageName)
+        assertEquals("com.vendumedia.uptppop", appContext.packageName)
     }
 }

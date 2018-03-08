@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Atlit</string>
+    <string name="app_name">UPTPPOP Kabupaten Bogor</string>
     <string name="done">Done</string>
     <string name="input_nama">Nama Lengkap</string>
     <string name="input_tempat_tanggal_lahir">Tempat Lahir</string>
@@ -44,6 +44,7 @@
     <string name="input_hobby">Hobby / Kegiatan Lain</string>
     <string name="input_catatan">Catatan Prestasi Terbaik</string>
     <string name="input_catatan_description">3 Terbaik</string>
+    <string name="input_foto">Foto</string>
     <string-array name="golongan_darah">
         <item>O</item>
         <item>A</item>

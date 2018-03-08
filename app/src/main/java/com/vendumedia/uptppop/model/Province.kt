@@ -1,4 +1,4 @@
-package com.vendumedia.atlit.model
+package com.vendumedia.uptppop.model
 
 import com.google.gson.annotations.SerializedName
 

@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/atlit.iml" filepath="$PROJECT_DIR$/atlit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ppl.iml" filepath="$PROJECT_DIR$/ppl.iml" />
       <module fileurl="file://$PROJECT_DIR$/retrofit-spinner-post-get-android.iml" filepath="$PROJECT_DIR$/retrofit-spinner-post-get-android.iml" />
     </modules>
   </component>

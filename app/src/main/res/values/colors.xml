@@ -11,5 +11,6 @@
     <color name="colorBlack">#101010</color>
     <color name="colorBlackSecondary">#aa101010</color>
     <color name="colorRed">#c21919</color>
+    <color name="colorWhiteSmoke">#DDD</color>
 
 </resources>
